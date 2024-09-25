@@ -1,0 +1,96 @@
+  190  cat > pets.txt
+  191  cat > pack_animals.txt
+  192  cat pets.txt pack_animals.txt > animals.txt
+  193  mv animals.txt human_friends.txt
+  194  cat human_friends.txt
+  195  ls
+  196  mkdir new_home
+  197  mv human_friends.txt /new_home
+  198  sudo mv human_friends.txt /new_home
+  199  cd new_home
+  200  ls
+  201  cd ..
+  202  ls
+  203  cd new_home
+  204  ls -ali
+  205  sudo ls
+  206  sudo mv human_friends.txt ¬/new_home
+  207  ls ..
+  208  cd..
+  209  cd ..
+  210  sudo mv human_friends.txt ¬/new_home
+  211  find human_friends.txt
+  212  cles
+  213  clean
+  214  clear
+  215  ls
+  216  cat pets.txt pack_animals.txt > human_friends.txt
+  217  ls
+  218  rm new_home
+  219  clear
+  220  mkdir pets_home
+  221  mv human_friends ../pets_home
+  222  mv human_friends.txt ../pets_home
+  223  sudo mv human_friends.txt ../pets_home
+  224  ls
+  225  cd pets_home
+  226  ls
+  227  ls -ali
+  228  cd ..
+  229  ls
+  230  ls -ali
+  231  cd ..
+  232  ls
+  233  cd new_home
+  234  cd root
+  235  cd home
+  236  find pets.txt
+  237  locate pets.txt
+  238  cd home
+  239  ls
+  240  cd olga
+  241  ls
+  242  clear
+  243  cat pets.txt pack_animals.txt > human_friends.txt
+  244  ls
+  245  mkdir pets_home
+  246  ls
+  247  cd pets_home
+  248  ls -ali
+  249  cd ..
+  250  mv human_friends.txt ../pets_home
+  251  mv human_friends.txt pets_home
+  252  cd pets_home
+  253  ls
+  254  clear
+  255  mysql
+  256  sudo apt install mysql-client-core-8.0  # version 8.0.39-0ubuntu0.24.04.2
+  257  cd ..
+  258  sudo update
+  259  sudo apt update
+  260  sudo apt install mysql-server
+  261  sudo apt purge mysql-server
+  262  sudo apt purge  mysql-client-core-8.0  # version 8.0.39-0ubuntu0.24.04.2
+  263  clear
+  264  apt list mysql
+  265  clear
+  266  mysql
+  267  clear
+  268  sudo apt update
+  269  sudo apt install mysql-server
+  270  sudo service mysql status
+  271  sudo apt purge mysql_service
+  272  sudo apt purge mysql-server
+  273  clear
+  274  sudo wget https://www.oracle.com/mysql/technologies/mysql-enterprise-edition-downloads.html#license-lightbox
+  275  sudo dpkg -i mysql-enterprise-edition-downloads.html
+  276  clear
+  277  sudo wget https://dev.mysql.com/downloads/file/?id=531268
+  278  clear
+  279  sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.32-1_all.deb
+  280  sudo dpkg -i mysql-apt-config_0.8.32-1_all.deb
+  281  sudo dpkg -r mysql-apt-config_0.8.32-1_all.deb
+  282  clear
+  283  sudo dpkg -r mysql-server
+  284  sudo dpkg -r mysql-server-8.0
+  285  history
