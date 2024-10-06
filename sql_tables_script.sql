@@ -224,4 +224,96 @@ delete from `human_friends`.`camels`;
 
 select id, horse_id as pack_id, horse_name as name from `human_friends`.`horses`
 union
-select id, donkey_id as pack_id, donkey_name as name from `human_friends`.`donkeys`
+select id, donkey_id as pack_id, donkey_name as name from `human_friends`.`donkeys`;
+
+-- new table ----------------------------------------------------------------
+CREATE TABLE `human_friends`.`young_animals`
+(
+  `id` Int NOT NULL AUTO_INCREMENT,
+  `animal_id` Int,
+  `animal_name` Varchar(45) NOT NULL,
+  `birth_date` Date NOT NULL,
+  `commands` Varchar(255),
+  `age` Varchar(45),
+  PRIMARY KEY (`id`)
+)
+;
+CREATE INDEX `animal_idx` ON `human_friends`.`young_animals` (`animal_id`)
+;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, cat_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.cats
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, dog_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.dogs
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, hamster_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.hamsters
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, camel_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.camels
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, donkey_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.donkeys
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+INSERT INTO `human_friends`.`young_animals`
+(`animal_id`,`animal_name`,`birth_date`,`commands`,`age`)
+select id, horse_name, birth_date, commands,
+concat("years: ", cast(timestampdiff(year, birth_date, now()) as char),
+   "; monthes: ", cast(mod(timestampdiff(month, birth_date, now()), 12) as char)) as age
+from `human_friends`.horses
+where timestampdiff(month, birth_date, now()) between 12 and 36;
+
+select * from `human_friends`.young_animals;
+
+-- all tables ---------------------------------------------------------------------
+-- pets
+select c.id as id, c.cat_name as name, p.pet_name as type, c.birth_date, c.commands
+from `human_friends`.cats c
+left join `human_friends`.pets p on c.cat_id = p.id
+union
+select d.id as id, d.dog_name as name, p.pet_name as type, d.birth_date, d.commands
+from `human_friends`.dogs d
+left join `human_friends`.pets p on d.dog_id = p.id
+union
+select h.id as id, h.hamster_name as name, p.pet_name as type, h.birth_date, h.commands
+from `human_friends`.hamsters h
+left join `human_friends`.pets p on h.hamster_id = p.id
+order by id; 
+
+-- pack_animals
+-- pets
+-- camels was deleted
+select h.id as id, horse_name as name, p.pack_name as type, h.birth_date, h.commands
+from `human_friends`.horses h
+left join `human_friends`.pack_animals p on h.horse_id = p.id
+union
+select d.id as id, d.donkey_name as name, p.pack_name as type, d.birth_date, d.commands
+from `human_friends`.donkeys d
+left join `human_friends`.pack_animals p on d.donkey_id = p.id
+order by id 

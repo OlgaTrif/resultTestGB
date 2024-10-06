@@ -44,6 +44,7 @@ donkey
 Ошибочные вводы команд тоже оставлены.
 
 В формате: Файла с ФИО, датой сдачи, номером группы(или потока)
+[text](Trifonova_o_e_25.09.24_6259.txt)
 
 
 
@@ -71,6 +72,7 @@ donkey
    ![alt text](deleting_camels-1.png)
    ![alt text](union_horse_donkey-1.png)
    - Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить их возраст с точностью до месяца.
+   ![alt text](young_animals-1.png)
    
    - Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
 
@@ -97,3 +99,8 @@ ID	Name	Type	BirthDate	Commands
 7	Blaze	Horse	2016-02-29	Trot, Jump, Gallop
 8	Sahara	Camel	2015-08-14	Walk, Run
 
+![alt text](all_pets-1.png)
+![alt text](all_pack_animals-1.png)
+
+Скрипт выполнения всех заданий приложен в проекте.
+[text](sql_tables_script.sql)
