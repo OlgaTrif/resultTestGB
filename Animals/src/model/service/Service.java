@@ -24,6 +24,15 @@ public class Service {
         return new Service();
     }
 
+    public void addAnimal(String type, String name, ArrayList<String> commands, LocalDate dateOfBirth){
+
+    }
+
+    public void addAnimal(String type, String name, ArrayList<String> commands,
+                          LocalDate dateOfBirth, LocalDate dateOfDeath){
+
+    }
+
     public void addCat(String name, ArrayList<String> commands, LocalDate dateOfBirth){
         Cat cat = new Cat(name, commands, dateOfBirth);
     }
@@ -46,5 +55,23 @@ public class Service {
 
     public void addHose(String name, ArrayList<String> commands, LocalDate dateOfBirth){
         Horse horse = new Horse(name, commands, dateOfBirth);
+    }
+
+    public String getAnimalListInfo() {
+    }
+
+    public void sortAnimalsByBirthDate() {
+    }
+
+    public void sortAnimalsByName() {
+    }
+
+    public Animal getAnimalById(Integer id) {
+    }
+
+    public void addCommand(String command) {
+    }
+
+    public void removeCommand(Integer animalId) {
     }
 }
