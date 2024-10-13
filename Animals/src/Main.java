@@ -1,5 +1,9 @@
+import view.AnimalView;
+import view.ConsoleUI;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        AnimalView view = new ConsoleUI();
+        view.start();
     }
 }

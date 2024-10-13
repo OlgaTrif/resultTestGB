@@ -1,6 +1,8 @@
 package model.animal;
 
-public class AnimalCounter implements AutoCloseable{
+import java.io.Serializable;
+
+public class AnimalCounter implements AutoCloseable, Serializable {
     private static Integer counter = 0;
 
     public void add(){

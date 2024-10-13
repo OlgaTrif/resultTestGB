@@ -1,16 +1,17 @@
 package model.service;
 
 import model.animal.Animal;
-import model.pack.camel.Camel;
-import model.pack.donkey.Donkey;
-import model.pack.horse.Horse;
 import model.pet.cat.Cat;
 import model.pet.dog.Dog;
 import model.pet.hamster.Hamster;
+import model.reader.AnimalReader;
+import model.reader.AnimalReaderable;
+import model.writer.AnimalWritable;
+import model.writer.AnimalWriter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Service {
@@ -18,6 +19,12 @@ public class Service {
     private static final String filePath = "src/animals.txt";
 
     public Service() {
+        try {
+            List<Animal> animalsList = load();
+            setAnimals(animalsList);
+        } catch (Exception e) {
+            animals = new ArrayList<>();
+        }
     }
 
     public static Service service() {
@@ -33,30 +40,6 @@ public class Service {
 
     }
 
-    public void addCat(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Cat cat = new Cat(name, commands, dateOfBirth);
-    }
-
-    public void addDog(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Dog dog = new Dog(name, commands, dateOfBirth);
-    }
-
-    public void addHamster(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Hamster hamster = new Hamster(name, commands, dateOfBirth);
-    }
-
-    public void addCamel(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Camel camel = new Camel(name, commands, dateOfBirth);
-    }
-
-    public void addDonkey(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Donkey donkey = new Donkey(name, commands, dateOfBirth);
-    }
-
-    public void addHose(String name, ArrayList<String> commands, LocalDate dateOfBirth){
-        Horse horse = new Horse(name, commands, dateOfBirth);
-    }
-
     public String getAnimalListInfo() {
     }
 
@@ -67,11 +50,31 @@ public class Service {
     }
 
     public Animal getAnimalById(Integer id) {
+        return null;
     }
 
     public void addCommand(String command) {
     }
 
     public void removeCommand(Integer animalId) {
+    }
+
+    public void setAnimals(List<Animal> animalsList) {
+        animals = animalsList;
+        save(animals);
+    }
+
+    private static void save(List<Animal> animalsList){
+        AnimalWritable writer = new AnimalWriter();
+        writer.write(animalsList, filePath);
+    }
+
+    private static List<Animal> load(){
+        AnimalReaderable reader = new AnimalReader();
+        try {
+            return (List<Animal>) reader.read(filePath);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
