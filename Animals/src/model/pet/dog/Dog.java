@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Dog implements Animal {
-    private Integer id;
     private String name;
     private ArrayList<String> commands;
     private LocalDate dateOfBirth;
@@ -18,13 +17,6 @@ public class Dog implements Animal {
 
     public Dog() {
         this("", new ArrayList<>(), LocalDate.now(), LocalDate.now());
-    }
-
-    public void setId(Integer id){
-        this.id = id;
-    }
-    public Integer getId(){
-        return this.id;
     }
 
     public Dog(String name, ArrayList<String> commands, LocalDate dateOfBirth, LocalDate dateOfDeath) {

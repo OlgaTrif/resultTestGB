@@ -31,8 +31,8 @@ public class AnimalPresenter {
         view.printAnswer(service.getAnimalListInfo());
     }
 
-    public void sortByAge() {
-        service.sortAnimalsByBirthDate();
+    public void showCommands() {
+        service.showCommands();
         getAimalListInfo();
     }
 

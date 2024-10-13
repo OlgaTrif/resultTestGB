@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Hamster implements Animal {
-    private Integer id;
     private String name;
     private ArrayList<String> commands;
     private LocalDate dateOfBirth;
@@ -32,13 +31,6 @@ public class Hamster implements Animal {
         this.commands = commands;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
-    }
-
-    public void setId(Integer id){
-        this.id = id;
-    }
-    public Integer getId(){
-        return this.id;
     }
 
     @Override

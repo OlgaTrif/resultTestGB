@@ -5,12 +5,10 @@ import model.animal.Animal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Cat implements Animal {
-    private Integer id;
     private String name;
     private ArrayList<String> commands;
     private LocalDate dateOfBirth;
@@ -32,13 +30,6 @@ public class Cat implements Animal {
         this.commands = commands;
         this.dateOfBirth = dateOfBirth;
         this.dateOfDeath = null;
-    }
-
-    public void setId(Integer id){
-        this.id = id;
-    }
-    public Integer getId(){
-        return this.id;
     }
 
     @Override

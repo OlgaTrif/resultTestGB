@@ -13,7 +13,7 @@ public class MainMenu {
         commands.add(new AddAnimal(consoleUI));
         commands.add(new AddCommand(consoleUI));
         commands.add(new GetAnimalsList(consoleUI));
-        commands.add(new SortByAge(consoleUI));
+        commands.add(new ShowCommands(consoleUI));
         commands.add(new SortByName(consoleUI));
         commands.add(new RemoveAnimal(consoleUI));
         commands.add(new EndProgram(consoleUI));
