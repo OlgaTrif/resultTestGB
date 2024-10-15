@@ -15,6 +15,7 @@ import model.writer.AnimalWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Service {
@@ -82,6 +83,7 @@ public class Service {
     public String sortByBirthDate(String typeStr) {
         List<Animal> animalsList = getAnimalListByType(typeStr);
         Collections.sort(animalsList, new BirthDayComparator<>());
+        Collections.sort(animalsList, Comparator.comparing(Animal::getDateOfBirth));
         return getAnimalListInfo(typeStr);
     }
 
