@@ -3,6 +3,7 @@ package model.service;
 import model.animal.Animal;
 import model.animal.AnimalCounter;
 import model.animal.AnimalList;
+import model.animal.comparators.BirthDayComparator;
 import model.pet.AnimalTypes;
 import model.pet.cat.Cat;
 import model.pet.dog.Dog;
@@ -14,14 +15,17 @@ import model.writer.AnimalWriter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static model.pet.AnimalTypes.*;
+import static java.util.Collections.*;
 
 public class Service {
+    private static final String ANIMAL_NOT_FOUND_EXCEPTION = "Животное не найдено. Проверьте корректность клички";
+    private static final String COMMA = ", ";
     private AnimalList<Object> animals = new AnimalList<>();
-    private static final String filePath = "src/animals.txt";
+    private static final String filePath = "src/Animals.txt";
 
     public Service() {
         try {
@@ -30,10 +34,6 @@ public class Service {
         } catch (Exception e) {
             animals = new AnimalList<>();
         }
-    }
-
-    public static Service service() {
-        return new Service();
     }
 
     public void addAnimal(String type, String name, ArrayList<String> commands, LocalDate dateOfBirth) throws Exception {
@@ -61,23 +61,32 @@ public class Service {
         }
     }
 
-    public String getAnimalListInfo() {
+    public String getAnimalListInfo(String typeStr) {
+        return getAnimalListByType(typeStr).toString();
     }
 
-    public void showCommands() {
+    public String showCommands(String name) {
+        Animal animal = findAnimalByName(name);
+        if (animal == null) {
+            return ANIMAL_NOT_FOUND_EXCEPTION;
+        }
+        List<String> commands;
+        commands = animal.getCommandList();
+        StringBuilder commandsStr = new StringBuilder();
+        for (String c :commands) {
+            commandsStr.append(c).append(COMMA);
+        }
+        return commandsStr.toString();
     }
 
-    public void sortAnimalsByName() {
+    public String sortByBirthDate(String typeStr) {
+        List<Object> animalsList = getAnimalListByType(typeStr);
+        Collections.sort(animalsList, new BirthDayComparator());
+        return animalsList.toString();
     }
 
-    public Animal getAnimalById(Integer id) {
-        return null;
-    }
-
-    public void addCommand(String command) {
-    }
-
-    public void removeCommand(Integer animalId) {
+    public boolean removeAnimal(String name) {
+        return animals.removeAnimal(findAnimalByName(name));
     }
 
     public void setAnimals(AnimalList<Object> animalsList) {
@@ -103,5 +112,28 @@ public class Service {
         try(AnimalCounter counter = new AnimalCounter()){
             Logger.getAnonymousLogger().info(counter.getCount().toString());
         }
+    }
+
+    public Animal findAnimalByName(String name) {
+        Animal animal;
+        animal = animals.findCat(name);
+        if (animal == null){
+            animal = animals.findDog(name);
+            if (animal == null) {
+                animal = animals.findHamster(name);
+            }
+        }
+        return animal;
+    }
+
+    private List<Object> getAnimalListByType(String typeStr){
+        List<Object> animalsList = new ArrayList<>();
+        AnimalTypes type = AnimalTypes.valueOf(typeStr);
+        switch (type) {
+            case CAT -> animalsList = animals.getCats();
+            case DOG -> animalsList = animals.getDogs();
+            case HAMSTER -> animalsList = animals.getHamsters();
+        }
+        return animalsList;
     }
 }

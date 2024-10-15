@@ -11,10 +11,9 @@ public class MainMenu {
     public MainMenu(ConsoleUI consoleUI) {
         commands = new ArrayList<>();
         commands.add(new AddAnimal(consoleUI));
-        commands.add(new AddCommand(consoleUI));
         commands.add(new GetAnimalsList(consoleUI));
         commands.add(new ShowCommands(consoleUI));
-        commands.add(new SortByName(consoleUI));
+        commands.add(new SortByBirthDate(consoleUI));
         commands.add(new RemoveAnimal(consoleUI));
         commands.add(new EndProgram(consoleUI));
     }

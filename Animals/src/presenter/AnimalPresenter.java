@@ -1,6 +1,5 @@
 package presenter;
 
-import model.animal.Animal;
 import model.service.Service;
 import view.AnimalView;
 
@@ -17,39 +16,35 @@ public class AnimalPresenter {
     }
 
     public void addAnimal(String type, String name, ArrayList<String> commands, LocalDate dateOfBirth) {
-        service.addAnimal(type, name, commands, dateOfBirth);
-        getAimalListInfo();
+        try {
+            service.addAnimal(type, name, commands, dateOfBirth);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addAnimal(String type, String name, ArrayList<String> commands,
                           LocalDate dateOfBirth, LocalDate dateOfDeath) {
-        service.addAnimal(type, name, commands, dateOfBirth, dateOfDeath);
-        getAimalListInfo();
+        try {
+            service.addAnimal(type, name, commands, dateOfBirth, dateOfDeath);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void getAimalListInfo() {
-        view.printAnswer(service.getAnimalListInfo());
+    public void getAimalListInfo(String type) {
+        view.printAnswer(service.getAnimalListInfo(type));
     }
 
-    public void showCommands() {
-        service.showCommands();
-        getAimalListInfo();
+    public void showCommands(String name) {
+        view.printAnswer(service.showCommands(name));
     }
 
-    public void sortByName() {
-        service.sortAnimalsByName();
-        getAimalListInfo();
+    public void sortByBirthDate(String type) {
+        view.printAnswer(service.sortByBirthDate(type));
     }
 
-    public Animal getMemberById(Integer id){
-        return service.getAnimalById(id);
-    }
-
-    public void addCommand(String command) {
-        service.addCommand(command);
-    }
-
-    public void removeCommand(Integer animalId){
-        service.removeCommand(animalId);
+    public boolean removeAnimal(String name){
+        return service.removeAnimal(name);
     }
 }

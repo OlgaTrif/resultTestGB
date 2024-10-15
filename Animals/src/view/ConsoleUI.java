@@ -52,7 +52,7 @@ public class ConsoleUI implements AnimalView{
     public void addAnimal() {
         System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
         String type = scanner.nextLine();
-        System.out.println("Введите кличку: \n");
+        System.out.println("Введите кличку домашнего животного:\n");
         String name = scanner.nextLine();
         System.out.println("Введите команды через пробел: \n");
         String commandsStr = scanner.nextLine();
@@ -63,7 +63,7 @@ public class ConsoleUI implements AnimalView{
         LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr, formatter);
         System.out.println("Введите дату смерти (ДД.ММ.ГГГГ). Если её нет, то нажмите Enter: \n");
         String dateOfDeathStr = scanner.nextLine();
-        if (dateOfDeathStr.isEmpty()) {
+        if (strIsNullOrEmpty(dateOfDeathStr)) {
             presenter.addAnimal(type, name, commands, dateOfBirth);
         } else {
             LocalDate dateOfDeath = LocalDate.parse(dateOfBirthStr, formatter);
@@ -71,19 +71,42 @@ public class ConsoleUI implements AnimalView{
         }
     }
 
-    public void addCommand() {
-    }
 
     public void getAnimalsList() {
-        presenter.getAimalListInfo();
+        System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
+        String type = scanner.nextLine();
+        presenter.getAimalListInfo(type);
     }
 
     public void removeAnimal() {
+        System.out.println("Введите кличку домашнего животного:\n");
+        String name = scanner.nextLine();
+        boolean result = presenter.removeAnimal(name);
+        if (result) {
+            System.out.println("Успешно удалено\n");
+        } else {
+            System.out.println("Ошибка удаления\n");
+        }
     }
 
     public void showCommands() {
+        System.out.println("Введите кличку домашнего животного:\n");
+        String name = scanner.nextLine();
+        presenter.showCommands(name);
     }
 
-    public void sortByName() {
+    public void sortByBirthDate() {
+        System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
+        String type = scanner.nextLine();
+        presenter.sortByBirthDate(type);
+    }
+
+    public void endProgram() {
+        work = false;
+        System.out.println("До новых встреч!");
+    }
+
+    public boolean strIsNullOrEmpty(String str){
+        return str == null || str.isEmpty();
     }
 }

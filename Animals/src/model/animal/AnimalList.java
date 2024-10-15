@@ -37,7 +37,7 @@ public class AnimalList <Animal> {
 
     public Cat findCat(String name){
         List<Cat> cats = (List<Cat>) this.getCats();
-        Cat cat = null;
+        Cat cat;
 
         try {
             cat = cats.stream().filter(c -> c.getName().equals(name)).findFirst().get();
@@ -50,7 +50,7 @@ public class AnimalList <Animal> {
 
     public Dog findDog(String name){
         List<Dog> dogs = (List<Dog>) this.getDogs();
-        Dog dog = null;
+        Dog dog;
 
         try {
             dog = dogs.stream().filter(c -> c.getName().equals(name)).findFirst().get();
@@ -62,8 +62,8 @@ public class AnimalList <Animal> {
     }
 
     public Hamster findHamster(String name){
-        List<Hamster> hamsters = (List<Hamster>) this.getDogs();
-        Hamster hamster = null;
+        List<Hamster> hamsters = (List<Hamster>) this.getHamsters();
+        Hamster hamster;
 
         try {
             hamster = hamsters.stream().filter(c -> c.getName().equals(name)).findFirst().get();
