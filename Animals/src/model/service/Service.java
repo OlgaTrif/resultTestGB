@@ -81,8 +81,8 @@ public class Service {
 
     public String sortByBirthDate(String typeStr) {
         List<Animal> animalsList = getAnimalListByType(typeStr);
-        animalsList.sort(new BirthDayComparator());
-        return animalsList.toString();
+        Collections.sort(animalsList, new BirthDayComparator<>());
+        return getAnimalListInfo(typeStr);
     }
 
     public void removeAnimal(String name) {

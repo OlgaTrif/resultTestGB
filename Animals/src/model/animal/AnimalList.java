@@ -1,11 +1,13 @@
 package model.animal;
 
+import model.animal.comparators.BirthDayComparator;
 import model.pet.cat.Cat;
 import model.pet.dog.Dog;
 import model.pet.hamster.Hamster;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
