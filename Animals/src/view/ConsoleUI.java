@@ -8,11 +8,14 @@ import java.util.*;
 
 public class ConsoleUI implements AnimalView{
 
+    private static final String INSERT_TYPE = "Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n";
+    private static final String INSERT_NAME = "Введите кличку домашнего животного:\n";
+    private static final String SPACE = " ";
+
     private final Scanner scanner;
     private final AnimalPresenter presenter;
     private boolean work;
     private final MainMenu mainMenu;
-    private static final String SPACE = " ";
 
     public ConsoleUI() {
         scanner = new Scanner(System.in);
@@ -50,9 +53,9 @@ public class ConsoleUI implements AnimalView{
     }
 
     public void addAnimal() {
-        System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
+        System.out.println(INSERT_TYPE);
         String type = scanner.nextLine();
-        System.out.println("Введите кличку домашнего животного:\n");
+        System.out.println(INSERT_NAME);
         String name = scanner.nextLine();
         System.out.println("Введите команды через пробел: \n");
         String commandsStr = scanner.nextLine();
@@ -73,30 +76,25 @@ public class ConsoleUI implements AnimalView{
 
 
     public void getAnimalsList() {
-        System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
+        System.out.println(INSERT_TYPE);
         String type = scanner.nextLine();
         presenter.getAimalListInfo(type);
     }
 
     public void removeAnimal() {
-        System.out.println("Введите кличку домашнего животного:\n");
+        System.out.println(INSERT_NAME);
         String name = scanner.nextLine();
-        boolean result = presenter.removeAnimal(name);
-        if (result) {
-            System.out.println("Успешно удалено\n");
-        } else {
-            System.out.println("Ошибка удаления\n");
-        }
+        presenter.removeAnimal(name);
     }
 
     public void showCommands() {
-        System.out.println("Введите кличку домашнего животного:\n");
+        System.out.println(INSERT_NAME);
         String name = scanner.nextLine();
         presenter.showCommands(name);
     }
 
     public void sortByBirthDate() {
-        System.out.println("Введите тип домашнего животного: (CAT, DOG, HAMSTER)\n");
+        System.out.println(INSERT_TYPE);
         String type = scanner.nextLine();
         presenter.sortByBirthDate(type);
     }
@@ -108,5 +106,17 @@ public class ConsoleUI implements AnimalView{
 
     public boolean strIsNullOrEmpty(String str){
         return str == null || str.isEmpty();
+    }
+
+    public void showCounter() {
+        System.out.println("Всего животных: " + presenter.showCounter());
+    }
+
+    public void addNewCommand() {
+        System.out.println(INSERT_NAME);
+        String name = scanner.nextLine();
+        System.out.println("Введите команду: ");
+        String newCommand = scanner.nextLine();
+        presenter.addNewCommand(name, newCommand);
     }
 }

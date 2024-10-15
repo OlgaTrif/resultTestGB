@@ -1,10 +1,11 @@
 package model.animal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public interface Animal {
+public interface Animal extends Serializable {
     String getName();
     void setName(String name);
     LocalDate getDateOfBirth();
@@ -15,4 +16,5 @@ public interface Animal {
     void setDateOfDeath(LocalDate date);
     void addCommand(String newCommand);
     void removeCommand(String command);
+    String getInfo();
 }

@@ -87,4 +87,15 @@ public class Cat implements Animal {
         between = Period.between(dateOfBirth, Objects.requireNonNullElseGet(dateOfDeath, LocalDate::now));
         return between.getYears();
     }
+
+    public String getInfo(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("имя: ");
+        sb.append(getName());
+        sb.append("; возраст: ");
+        sb.append(getAge(getDateOfBirth(), getDateOfDeath()));
+        sb.append("; команды: ");
+        sb.append(getCommandList().toString());
+        return sb.toString();
+    }
 }

@@ -44,7 +44,15 @@ public class AnimalPresenter {
         view.printAnswer(service.sortByBirthDate(type));
     }
 
-    public boolean removeAnimal(String name){
-        return service.removeAnimal(name);
+    public void removeAnimal(String name){
+        service.removeAnimal(name);
+    }
+
+    public String showCounter() {
+        return service.showCount().toString();
+    }
+
+    public void addNewCommand(String name, String newCommand) {
+        service.addNewCommand(name, newCommand);
     }
 }

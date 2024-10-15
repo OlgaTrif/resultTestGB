@@ -1,5 +1,6 @@
 package model.writer;
 
+import model.animal.Animal;
 import model.animal.AnimalList;
 
 import java.io.FileOutputStream;
@@ -8,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 public class AnimalWriter implements AnimalWritable{
     @Override
-    public boolean write(AnimalList<Object> serializable, String filePath){
+    public boolean write(AnimalList<Animal> serializable, String filePath){
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath))){
             objectOutputStream.writeObject(serializable);
             return true;

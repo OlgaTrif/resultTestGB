@@ -5,7 +5,7 @@ import view.ConsoleUI;
 public class RemoveAnimal extends Command{
 
     public RemoveAnimal(ConsoleUI consoleUI) {
-        super("Удалить члена", consoleUI);
+        super("Удалить животное", consoleUI);
     }
 
     @Override

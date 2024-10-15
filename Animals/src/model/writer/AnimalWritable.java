@@ -1,7 +1,8 @@
 package model.writer;
 
+import model.animal.Animal;
 import model.animal.AnimalList;
 
 public interface AnimalWritable {
-    boolean write(AnimalList<Object> serializable, String filePath);
+    boolean write(AnimalList<Animal> serializable, String filePath);
 }

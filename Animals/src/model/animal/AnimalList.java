@@ -4,19 +4,20 @@ import model.pet.cat.Cat;
 import model.pet.dog.Dog;
 import model.pet.hamster.Hamster;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class AnimalList <Animal> {
+public class AnimalList <Animal> implements Serializable {
     private List<Animal> animals = new ArrayList<>();
 
     public void addAnimal(Animal animal) {
         animals.add(animal);
     }
 
-    public boolean removeAnimal(Animal animal){
-        return animals.remove(animal);
+    public void removeAnimal(Animal animal){
+        animals.remove(animal);
     }
 
     public List<Animal> getAnimals(){
@@ -72,5 +73,9 @@ public class AnimalList <Animal> {
             hamster = null;
         }
         return hamster;
+    }
+
+    public Integer getCount() {
+        return getAnimals().size();
     }
 }
