@@ -2,14 +2,14 @@ package model.pet.hamster;
 
 import model.animal.Animal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Hamster implements Animal {
+public class Hamster implements Animal, Serializable, Comparable<Animal> {
     private String name;
     private ArrayList<String> commands;
     private LocalDate dateOfBirth;
@@ -98,5 +98,23 @@ public class Hamster implements Animal {
         sb.append("; команды: ");
         sb.append(getCommandList().toString());
         return sb.toString();
+    }
+
+    @Override
+    public Animal get() {
+        return this;
+    }
+
+    @Override
+    public void set(Animal o) {
+        this.name = o.getName();
+        this.commands = new ArrayList<>(o.getCommandList());
+        this.dateOfBirth = o.getDateOfBirth();
+        this.dateOfDeath = o.getDateOfDeath();
+    }
+
+    @Override
+    public int compareTo(Animal o) {
+        return this.dateOfDeath.compareTo(o.getDateOfBirth());
     }
 }

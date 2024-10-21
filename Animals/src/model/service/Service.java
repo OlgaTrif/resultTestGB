@@ -13,10 +13,7 @@ import model.writer.AnimalWritable;
 import model.writer.AnimalWriter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Service {
     private static final String ANIMAL_NOT_FOUND_EXCEPTION = "Животное не найдено. Проверьте корректность клички";
@@ -81,9 +78,14 @@ public class Service {
     }
 
     public String sortByBirthDate(String typeStr) {
-        List<Animal> animalsList = getAnimalListByType(typeStr);
-        Collections.sort(animalsList, new BirthDayComparator<>());
-        Collections.sort(animalsList, Comparator.comparing(Animal::getDateOfBirth));
+        List<Animal> animalsList = new ArrayList<>();
+        AnimalTypes type = AnimalTypes.valueOf(typeStr);
+        switch (type) {
+            case CAT -> animalsList = animals.getCats();
+            case DOG -> animalsList = animals.getDogs();
+            case HAMSTER -> animalsList = animals.getHamsters();
+        }
+        Collections.sort(animalsList, new BirthDayComparator());
         return getAnimalListInfo(typeStr);
     }
 
@@ -148,4 +150,15 @@ public class Service {
         animal.addCommand(newCommand);
         save(animals);
     }
+
+    /*public List<Animal> sortList(List<Animal> animals){
+        for (int out = animals.size() - 1; out >= 1; out--){  //Внешний цикл
+            for (int in = 0; in < out; in++){       //Внутренний цикл//Если порядок элементов нарушен
+                Animal an = animals.get(in);      //во временную переменную помещаем первый элемент
+                animals.get(in).set(animals.get(out));       //на место первого ставим второй элемент
+                animals.get(out).set(an);             //вызвать метод, меняющий местами
+            }
+        }
+        return animals;
+    }*/
 }

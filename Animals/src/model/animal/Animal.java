@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public interface Animal extends Serializable {
+public interface Animal extends Serializable{
     String getName();
     void setName(String name);
     LocalDate getDateOfBirth();
@@ -17,4 +17,6 @@ public interface Animal extends Serializable {
     void addCommand(String newCommand);
     void removeCommand(String command);
     String getInfo();
+    Animal get();
+    void set(Animal o);
 }
